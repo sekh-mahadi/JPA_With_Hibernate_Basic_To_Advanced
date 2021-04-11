@@ -39,4 +39,19 @@ class CourseRepositoryTest {
 		assertNull(repo.findById(100002l));
 	}
 
+	@Test
+	@DirtiesContext
+	public void save_Basic() {
+		// get a Course
+		Course course = repo.findById(100002l);
+		assertEquals("Spring Advanced", course.getName());
+
+		// update details
+		course.setName("Spring Advanced - updated");
+		repo.save(course);
+		// Check the value
+		Course course1 = repo.findById(100002l);
+		assertEquals("Spring Advanced - updated", course1.getName());
+
+	}
 }

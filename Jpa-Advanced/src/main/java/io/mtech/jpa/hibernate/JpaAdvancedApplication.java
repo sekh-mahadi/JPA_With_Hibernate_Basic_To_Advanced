@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import io.mtech.jpa.hibernate.entity.Course;
 import io.mtech.jpa.hibernate.repo.CourseRepository;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,7 +26,8 @@ public class JpaAdvancedApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		log.info("Course -> " + repository.findById(100001l));
-		//repository.deleteById(100001l);
+		repository.deleteById(100001l);
+		repository.save(new Course(10004l,"Microservices basic to advanced"));
 	}
 
 }

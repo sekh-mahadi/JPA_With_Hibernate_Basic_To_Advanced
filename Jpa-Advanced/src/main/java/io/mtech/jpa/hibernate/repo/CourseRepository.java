@@ -24,4 +24,15 @@ public class CourseRepository {
 		eManager.remove(course);
 	}
 
+//Insert and Update
+	public Course save(Course course) {
+		if (course.getId() == null) {
+			// insert Course
+			eManager.persist(course);
+		} else {
+			eManager.merge(course);
+		}
+		return course;
+	}
+
 }
