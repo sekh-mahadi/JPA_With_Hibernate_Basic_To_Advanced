@@ -1,5 +1,5 @@
 
-##Insert and Update
+## Insert and Update
 ```xml
 	public Course save(Course course) {
 	if (course.getId() == null) {
