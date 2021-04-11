@@ -1,5 +1,6 @@
-...xml
+
 ###Insert and Update
+```xml
 	public Course save(Course course) {
 		if (course.getId() == null) {
 			// insert Course
@@ -9,11 +10,11 @@
 		}
 		return course;
 	}
-...
+```
 
 
 ## Save and Update method Test Case
- ...xml
+ ```xml
  @Test
 	@DirtiesContext
 	public void save_Basic() {
@@ -29,6 +30,4 @@
 		assertEquals("Spring Advanced - updated", course1.getName());
 
 	}
-	...
-	
-	###
+	```
