@@ -1,7 +1,6 @@
-       
-        ## Savae and Update method
-        //Insert and Update
-	...public Course save(Course course) {
+ ## Savae and Update method
+ //Insert and Update
+...public Course save(Course course) {
 		if (course.getId() == null) {
 			// insert Course
 			eManager.persist(course);
@@ -9,7 +8,7 @@
 			eManager.merge(course);
 		}
 		return course;
-	}...
+		}...
 	
 	### Save and Update Method Test
 	
