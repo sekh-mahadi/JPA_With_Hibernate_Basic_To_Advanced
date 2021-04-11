@@ -1,6 +1,6 @@
- ## Savae and Update method
- //Insert and Update
-...public Course save(Course course) {
+...xml
+###Insert and Update
+	public Course save(Course course) {
 		if (course.getId() == null) {
 			// insert Course
 			eManager.persist(course);
@@ -8,11 +8,13 @@
 			eManager.merge(course);
 		}
 		return course;
-		}...
-	
-	### Save and Update Method Test
-	
-     ...@Test
+	}
+...
+
+
+## Save and Update method Test Case
+ ...xml
+ @Test
 	@DirtiesContext
 	public void save_Basic() {
 		// get a Course
@@ -26,4 +28,7 @@
 		Course course1 = repo.findById(100002l);
 		assertEquals("Spring Advanced - updated", course1.getName());
 
-	}...
+	}
+	...
+	
+	###
