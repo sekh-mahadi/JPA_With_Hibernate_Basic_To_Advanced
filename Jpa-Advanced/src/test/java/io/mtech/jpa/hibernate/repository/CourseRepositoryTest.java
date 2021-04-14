@@ -7,16 +7,20 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.ContextConfiguration;
 
 import io.mtech.jpa.hibernate.JpaAdvancedApplication;
 import io.mtech.jpa.hibernate.entity.Course;
 import io.mtech.jpa.hibernate.repo.CourseRepository;
 
-@SpringBootTest(classes = JpaAdvancedApplication.class)
+
+@SpringBootTest
+//(classes = { JpaAdvancedApplication.class, CourseRepository.class })
 //@ContextConfiguration(classes = {JpaAdvancedApplication.class, CourseRepository.class})
+@ContextConfiguration
 class CourseRepositoryTest {
 	@Autowired
-	private CourseRepository repo;
+	CourseRepository repo;
 
 	@Test
 	void contextLoads() {
@@ -53,5 +57,11 @@ class CourseRepositoryTest {
 		Course course1 = repo.findById(100002l);
 		assertEquals("Spring Advanced - updated", course1.getName());
 
+	}
+
+	@Test
+	@DirtiesContext
+	public void playWithEntityManager() {
+		repo.playWithEntityManager();
 	}
 }

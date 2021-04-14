@@ -11,14 +11,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Setter(value = AccessLevel.NONE)
 	private Long id;
 	private String name;
+
+	public Course(String name) {
+		this.name = name;
+	}
 }

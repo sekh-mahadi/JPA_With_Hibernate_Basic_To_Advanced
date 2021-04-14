@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import io.mtech.jpa.hibernate.entity.Course;
+import lombok.extern.slf4j.Slf4j;
 
 @Repository
 @Transactional
+@Slf4j
 public class CourseRepository {
 
 	@Autowired
@@ -35,4 +37,24 @@ public class CourseRepository {
 		return course;
 	}
 
+	public void playWithEntityManager() {
+		log.info("playWithEntityManager - Started");
+		Course course1 = new Course("Web Services Basic to advanced");
+		eManager.persist(course1);
+		
+		Course course2 = new Course("Angular Basic to advanced");
+		eManager.persist(course2);
+		eManager.flush();
+	
+		/*//Use flush not track in DB
+		 * eManager.detach(course1); eManager.detach(course2);
+		 */
+		// use clear() instead of flush() for not track in database
+		//eManager.clear();
+		
+		course1.setName("Web Services Basic to advanced - Updated.");
+		course2.setName("Angular Basic to advanced - Updated.");
+		eManager.refresh(course1);
+		eManager.flush();
+	}
 }

@@ -25,9 +25,11 @@ public class JpaAdvancedApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		log.info("Course -> " + repository.findById(100001l));
-		repository.deleteById(100001l);
-		repository.save(new Course(10004l,"Microservices basic to advanced"));
+		repository.playWithEntityManager();
+		/*
+		 * repository.deleteById(100001l); repository.save(new
+		 * Course(10004l,"Microservices basic to advanced"));
+		 */
 	}
 
 }
