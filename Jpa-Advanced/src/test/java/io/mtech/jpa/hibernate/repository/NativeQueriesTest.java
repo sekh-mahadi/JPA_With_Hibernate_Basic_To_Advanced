@@ -51,7 +51,7 @@ public class NativeQueriesTest {
 	@Transactional
 	public void native_queries_to_update() {
 		/*Native Queries */
-		Query query = em.createNativeQuery("Update COURSE set last_updated_date=sysdate()", Course.class);
+		Query query = em.createNativeQuery("Update Course set last_updated_date=sysdate()", Course.class);
 		int noOfRowsUpdated = query.executeUpdate();
 		log.info("noOfRowsUpdated -> {}", noOfRowsUpdated);
 	}

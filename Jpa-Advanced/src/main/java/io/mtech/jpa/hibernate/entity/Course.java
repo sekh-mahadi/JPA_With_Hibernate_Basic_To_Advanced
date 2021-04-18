@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -28,6 +27,7 @@ import lombok.Setter;
 //@NamedQuery(name = "query_get_all_courses", query = "select c from Course c")
 @NamedQueries(value = {@NamedQuery( name = "query_get_all_courses", query = "select c from Course c"),
 		@NamedQuery(name = "get_updated_courses", query = "Select c from Course c where name like '%Updated.'")})
+
 public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

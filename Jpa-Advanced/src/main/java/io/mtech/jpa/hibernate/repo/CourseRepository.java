@@ -45,9 +45,10 @@ public class CourseRepository {
 		Course course2 = new Course("Angular Basic to advanced");
 		eManager.persist(course2);
 		
-		Course course3 = findById(100002l);
-		course3.setName("Spring Advanced- Updated.");
-
+		/*
+		 * Course course3 = findById(100002l);
+		 * course3.setName("Spring Advanced- Updated.");
+		 */
 		eManager.flush();
 	
 		/*//Use flush not track in DB

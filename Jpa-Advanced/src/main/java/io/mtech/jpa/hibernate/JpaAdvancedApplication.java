@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import io.mtech.jpa.hibernate.entity.Course;
 import io.mtech.jpa.hibernate.repo.CourseRepository;
+import io.mtech.jpa.hibernate.repo.StudentRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -20,12 +21,15 @@ public class JpaAdvancedApplication implements CommandLineRunner {
 	}
 
 	@Autowired
-	private CourseRepository repository;
+	private CourseRepository courseRepository;
+	@Autowired
+	StudentRepository studentRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
 
-		repository.playWithEntityManager();
+		courseRepository.playWithEntityManager();
+		studentRepository.saveStudentWithPassport();
 		/*
 		 * repository.deleteById(100001l); repository.save(new
 		 * Course(10004l,"Microservices basic to advanced"));

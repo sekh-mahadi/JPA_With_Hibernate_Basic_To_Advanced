@@ -9,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 
-import io.mtech.jpa.hibernate.JpaAdvancedApplication;
 import io.mtech.jpa.hibernate.entity.Course;
 import io.mtech.jpa.hibernate.repo.CourseRepository;
 
