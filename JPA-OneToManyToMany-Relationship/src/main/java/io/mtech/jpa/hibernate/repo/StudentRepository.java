@@ -1,11 +1,13 @@
 package io.mtech.jpa.hibernate.repo;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Transient;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import io.mtech.jpa.hibernate.entity.Course;
 import io.mtech.jpa.hibernate.entity.Passport;
 import io.mtech.jpa.hibernate.entity.Student;
 import lombok.extern.slf4j.Slf4j;
@@ -79,5 +81,40 @@ public class StudentRepository {
 		 */
 		// use clear() instead of flush() for not track in database
 		// eManager.clear();
+	}
+	
+	public void insertHardCodedStudentAndCourse() {
+		Student student = new Student("Ariba");
+		Course course = new Course("Kubernates and Docker");
+		
+		eManager.persist(student);
+		eManager.persist(course);
+		
+		student.addCourse(course);
+		course.addStudent(student);
+		
+		eManager.persist(student);
+		
+	}
+	public void insertStudentAndCourse(Student student, Course course) {
+//		Student student = new Student("Ariba");
+//		Course course = new Course("Kubernates and Docker");
+		
+		student.addCourse(course);
+		course.addStudent(student);
+		
+		eManager.persist(student);
+		eManager.persist(course);		
+	}
+	
+	public void insertCourseAndStudent( Course course, Student student) {
+//		Student student = new Student("Ariba");
+//		Course course = new Course("Kubernates and Docker");
+		
+		student.addCourse(course);
+		course.addStudent(student);
+		
+		eManager.persist(student);
+		eManager.persist(course);
 	}
 }

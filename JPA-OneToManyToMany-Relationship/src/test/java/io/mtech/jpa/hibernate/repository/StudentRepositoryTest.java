@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import io.mtech.jpa.hibernate.entity.Course;
 import io.mtech.jpa.hibernate.entity.Passport;
 import io.mtech.jpa.hibernate.entity.Student;
 import io.mtech.jpa.hibernate.repo.StudentRepository;
@@ -20,13 +21,12 @@ public class StudentRepositoryTest {
 
 	@Autowired
 	EntityManager em;
-	
+
 	@Test
 	public void someTest() {
 		repo.someOperationToUnderstandPersistenceContext();
 	}
 
-	
 	@Test
 	@Transactional
 	public void retrieveStudentAndPassport() {
@@ -35,13 +35,29 @@ public class StudentRepositoryTest {
 		log.info("Student -> {}", student.getPassport());
 //assertEquals("Spring Advanced", student.getName());
 	}
-	
+
 	@Test
 	@Transactional
 	public void retrievePassportAndAssociatedStudent() {
-	Passport passport = em.find(Passport.class, 40001L);
+		Passport passport = em.find(Passport.class, 40001L);
 		log.info("Passport -> {}", passport);
 		log.info("Student -> {}", passport.getStudent());
-//assertEquals("Spring Advanced", student.getName());
 	}
+
+	@Test
+	@Transactional
+	public void retrieveStudentAndCourse() {
+		Student student = em.find(Student.class, 20001L);
+		log.info("Student -> {}", student);
+		log.info("Course -> {}", student.getCourses());
+	}
+
+	@Test
+	@Transactional
+	public void retrieveCourseAndStudent() {
+		Course course = em.find(Course.class, 10003L);
+		log.info("Course -> {}", course);
+		log.info("Student -> {}", course.getStudents());
+	}
+
 }

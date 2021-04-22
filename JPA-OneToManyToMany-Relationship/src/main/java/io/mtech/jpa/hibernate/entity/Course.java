@@ -23,6 +23,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
@@ -47,6 +48,7 @@ public class Course {
 	private List<Review> reviews = new ArrayList<>();
 
 	@ManyToMany(mappedBy = "courses")
+	@ToString.Exclude
 	private List<Student> students = new ArrayList<>();
 
 	@UpdateTimestamp
