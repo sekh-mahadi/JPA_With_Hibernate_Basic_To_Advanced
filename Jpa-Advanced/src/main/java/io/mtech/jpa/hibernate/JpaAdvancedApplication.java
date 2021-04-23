@@ -7,6 +7,7 @@ import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import io.mtech.jpa.hibernate.entity.Course;
+import io.mtech.jpa.hibernate.entity.Student;
 import io.mtech.jpa.hibernate.repo.CourseRepository;
 import io.mtech.jpa.hibernate.repo.StudentRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -28,12 +29,22 @@ public class JpaAdvancedApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		courseRepository.playWithEntityManager();
-		studentRepository.saveStudentWithPassport();
+
+		//courseRepository.playWithEntityManager();
+		//studentRepository.saveStudentWithPassport();
+		//courseRepository.addHardCodedReviewsForCourse();
+
+//		List<Review> reviews = new ArrayList<>();
+//		reviews.add(new Review("5", "Great Hands-on Stuff."));
+//		reviews.add(new Review("5", "Great Stuff."));
+//		courseRepository.addReviewsForCourse(10003L, reviews);
 		/*
 		 * repository.deleteById(100001l); repository.save(new
 		 * Course(10004l,"Microservices basic to advanced"));
 		 */
+		//studentRepository.insertHardCodedStudentAndCourse();
+		studentRepository.insertCourseAndStudent( new Course("Kubernates and Docker-updated.."), new Student("Tamanna"));
+	
 	}
 
 }
