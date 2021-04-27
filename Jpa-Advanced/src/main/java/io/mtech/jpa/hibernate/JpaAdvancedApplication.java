@@ -53,14 +53,18 @@ public class JpaAdvancedApplication implements CommandLineRunner {
 		// studentRepository.insertHardCodedStudentAndCourse();
 		// studentRepository.insertCourseAndStudent( new Course("Kubernates and
 		// Docker-updated.."), new Student("Tamanna"));
-		
-		//Sekh-Full time Employee wage-1000$
-		//Rupon-Part time Employee wage-100$
-		employeeRepository.insert(new PartTimeEmployee("Shekh Rupon", new BigDecimal("100")));
-		employeeRepository.insert(new FullTimeEmployee("Sekh Mahadi", new BigDecimal("1000")));
-		log.info("All Full time Employess:->{} ", employeeRepository.allPartTimeEmployees());
-		log.info("All Part time Employess:->{} ", employeeRepository.allFullTimeEmployees());
 
+		// Sekh-Full time Employee wage-1000$
+		// Rupon-Part time Employee wage-100$
+		/*
+		 * employeeRepository.insert(new PartTimeEmployee("Shekh Rupon", new
+		 * BigDecimal("100"))); employeeRepository.insert(new
+		 * FullTimeEmployee("Sekh Mahadi", new BigDecimal("1000")));
+		 * log.info("All Full time Employess:->{} ",
+		 * employeeRepository.allPartTimeEmployees());
+		 * log.info("All Part time Employess:->{} ",
+		 * employeeRepository.allFullTimeEmployees());
+		 */
 	}
 
 }

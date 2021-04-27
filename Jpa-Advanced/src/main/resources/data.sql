@@ -22,7 +22,7 @@ insert into student(id, name) values(20003, 'Sheikh Niaj');
 
 /*Passport*/
 insert into passport(id, number) values(40001, 'AF80012');
-insert into passport(id, number) values(40002, 'AG69023');
+insert into passport(id, number) values(40002, 'AG80023');
 insert into passport(id, number) values(40003, 'BF67120');
 
 /*Student after one to One relationship*/
