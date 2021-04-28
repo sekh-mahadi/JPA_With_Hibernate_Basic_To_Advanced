@@ -123,7 +123,7 @@ public class JPQLTest {
 	@Test
 	@Transactional
 	public void jpql_cross_Join() {
-		Query query = em.createQuery("Select c, s from Course c ,Student s");
+		Query query = em.createQuery("Select c, s from Course c , Student s");
 		List<Object[]> resultList = query.getResultList();
 		log.info("Result Size -> {}", resultList.size());
 

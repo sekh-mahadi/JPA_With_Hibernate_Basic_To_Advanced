@@ -44,7 +44,8 @@ public class Course {
 	private String name;
 
 	@Setter(value = AccessLevel.NONE)
-	@OneToMany(mappedBy = "course")
+	@OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
+	@ToString.Exclude
 	private List<Review> reviews = new ArrayList<>();
 
 	@ManyToMany(mappedBy = "courses")
@@ -52,9 +53,11 @@ public class Course {
 	private List<Student> students = new ArrayList<>();
 
 	@UpdateTimestamp
+	@ToString.Exclude
 	private LocalDateTime lastUpdatedDate;
 
 	@CreationTimestamp
+	@ToString.Exclude
 	private LocalDateTime createdDate;
 
 	public Course(String name) {
