@@ -44,7 +44,31 @@ class CourseRepositoryTest {
 		Course course = repo.findById(100002l);
 		assertEquals("Spring Advanced", course.getName());
 	}
+	@Test
+	//@Transactional
+	public void findById_Course_firstLevelCacheDemo() {
+		Course course = repo.findById(10001L);
+		 log.info("First Course Retrieved -> {}", course);
 
+		/*
+		 * Optional<Course> courseOptional = repo.findById(10001L);
+		 * log.info("First Course Retrieved -> {}", courseOptional.get());
+		 * 
+		 * assertEquals(true, courseOptional.isPresent());
+		 */
+		Course course1 = repo.findById(10001L);
+		log.info("First Course Retrieved again -> {}", course1);
+
+		/*
+		 * Optional<Course> courseOptional1 = repo.findById(10001L);
+		 * log.info("First Course Retrieved again -> {}", courseOptional1.get());
+		 * 
+		 * assertEquals(true, courseOptional1.isPresent());
+		 */
+		assertEquals("Jpa Advanced", course.getName());
+		assertEquals("Jpa Advanced", course1.getName());
+
+	}
 	@Test
 	@DirtiesContext
 	public void deleteById_Basic() {
