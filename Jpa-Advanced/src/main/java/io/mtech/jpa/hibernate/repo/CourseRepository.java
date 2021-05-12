@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import io.mtech.jpa.hibernate.entity.Course;
 import io.mtech.jpa.hibernate.entity.Review;
+import io.mtech.jpa.hibernate.entity.ReviewRating;
 import lombok.extern.slf4j.Slf4j;
 
 @Repository
@@ -72,8 +73,8 @@ public class CourseRepository {
 		Course course = findById(10003L);
 		log.info("Course Reviews -> {}", course.getReviews());
 		// add 2 reviews to it
-		Review review1 = new Review("5", "Great Hands-on Stuff.");
-		Review review2 = new Review("5", "Great Stuff.");
+		Review review1 = new Review(ReviewRating.FIVE, "Great Hands-on Stuff.");
+		Review review2 = new Review(ReviewRating.FIVE, "Great Stuff.");
 
 		// Setting the relationship
 		course.addReviews(review1);

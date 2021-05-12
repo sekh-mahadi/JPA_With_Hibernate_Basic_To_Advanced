@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import io.mtech.jpa.hibernate.entity.Address;
 import io.mtech.jpa.hibernate.entity.Course;
 import io.mtech.jpa.hibernate.entity.Passport;
 import io.mtech.jpa.hibernate.entity.Student;
@@ -31,6 +32,17 @@ public class StudentRepositoryTest {
 	@Transactional
 	public void retrieveStudentAndPassport() {
 		Student student = em.find(Student.class, 20001L);
+		log.info("Student -> {}", student);
+		log.info("Student -> {}", student.getPassport());
+//assertEquals("Spring Advanced", student.getName());
+	}
+
+	@Test
+	@Transactional
+	public void setAddress_Details() {
+		Student student = em.find(Student.class, 20001L);
+		student.setAddress(new Address("No. Street 121", "Udaypur", "Bhola"));
+		em.flush();
 		log.info("Student -> {}", student);
 		log.info("Student -> {}", student.getPassport());
 //assertEquals("Spring Advanced", student.getName());

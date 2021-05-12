@@ -1,7 +1,8 @@
 package io.mtech.jpa.hibernate.entity;
 
-
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,18 +19,20 @@ import lombok.ToString;
 @AllArgsConstructor
 @Entity
 public class Review {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String rating;
-	private String description;
 	
+	@Enumerated(EnumType.STRING)
+	private ReviewRating rating;
+	private String description;
+
 	@ManyToOne
 	@ToString.Exclude
 	private Course course;
-	
-	public Review(String rating, String description) {
+
+	public Review(ReviewRating rating, String description) {
 		this.description = description;
 		this.rating = rating;
 	}

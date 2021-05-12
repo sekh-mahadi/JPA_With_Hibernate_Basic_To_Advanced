@@ -14,11 +14,17 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -35,8 +41,10 @@ import lombok.ToString;
 //@NamedQuery(name = "query_get_all_courses", query = "select c from Course c")
 @NamedQueries(value = { @NamedQuery(name = "query_get_all_courses", query = "select c from Course c"),
 		@NamedQuery(name = "get_updated_courses", query = "Select c from Course c where name like '%Updated.'") })
-
+@SQLDelete(sql = "update course set is_deleted=true where id=?")
+@Where(clause = "is_deleted=false")
 public class Course {
+	private static Logger LOGGER = LoggerFactory.getLogger(Course.class);
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Setter(value = AccessLevel.NONE)
@@ -62,6 +70,12 @@ public class Course {
 	@ToString.Exclude
 	private LocalDateTime createdDate;
 
+	private boolean isDeleted;
+	@PreRemove
+	private void preRemove() {
+		LOGGER.info("Setting is deleted true");
+		this.isDeleted = true;
+	}
 	public Course(String name) {
 		this.name = name;
 	}

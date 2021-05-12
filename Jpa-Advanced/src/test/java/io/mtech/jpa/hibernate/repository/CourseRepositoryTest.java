@@ -24,12 +24,12 @@ import lombok.extern.slf4j.Slf4j;
 @ContextConfiguration
 @Slf4j
 class CourseRepositoryTest {
-	
+
 	@Autowired
 	CourseRepository repo;
 
 	@Autowired
-	 EntityManager em;
+	EntityManager em;
 
 	@Test
 	void contextLoads() {
@@ -41,14 +41,22 @@ class CourseRepositoryTest {
 
 	@Test
 	public void findById_Basic() {
-		Course course = repo.findById(100002l);
+		Course course = repo.findById(10002l);
 		assertEquals("Spring Advanced", course.getName());
 	}
+
 	@Test
-	//@Transactional
+	@DirtiesContext
+	public void course_Delete_ById() {
+		repo.deleteById(10002L);
+		assertNull(repo.findById(10002L));
+	}
+
+	@Test
+	// @Transactional
 	public void findById_Course_firstLevelCacheDemo() {
 		Course course = repo.findById(10001L);
-		 log.info("First Course Retrieved -> {}", course);
+		log.info("First Course Retrieved -> {}", course);
 
 		/*
 		 * Optional<Course> courseOptional = repo.findById(10001L);
@@ -69,25 +77,26 @@ class CourseRepositoryTest {
 		assertEquals("Jpa Advanced", course1.getName());
 
 	}
+
 	@Test
 	@DirtiesContext
 	public void deleteById_Basic() {
-		repo.deleteById(100002l);
-		assertNull(repo.findById(100002l));
+		repo.deleteById(10002l);
+		assertNull(repo.findById(10002l));
 	}
 
 	@Test
 	@DirtiesContext
 	public void save_Basic() {
 		// get a Course
-		Course course = repo.findById(100002l);
+		Course course = repo.findById(10002l);
 		assertEquals("Spring Advanced", course.getName());
 
 		// update details
 		course.setName("Spring Advanced - updated");
 		repo.save(course);
 		// Check the value
-		Course course1 = repo.findById(100002l);
+		Course course1 = repo.findById(10002l);
 		assertEquals("Spring Advanced - updated", course1.getName());
 
 	}
@@ -105,12 +114,12 @@ class CourseRepositoryTest {
 		log.info("Course Reviews: {}", course.getReviews());
 
 	}
-	
+
 	@Test
 	@Transactional
 	public void retrieveCourseForReview() {
 		Review review = em.find(Review.class, 50001l);
 		log.info("Course Reviews: {}", review.getCourse());
 	}
-	
+
 }
